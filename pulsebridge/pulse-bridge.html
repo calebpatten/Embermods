@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40% OFF | EmberMods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .discount {
+            font-size: 48px;
+            font-weight: 700;
+            color: #880cb5;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 24px 32px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+            background: #880cb5;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="discount">40% OFF</div>
+        <a href="https://www.embermods.com/pulse" target="_blank" rel="noopener" class="cta-button" id="ctaButton">
+            Get NBA 2K Script
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('ctaButton').addEventListener('click', function(e) {
+            const url = 'https://www.embermods.com/pulse';
+            const ua = navigator.userAgent || '';
+            const isInAppBrowser = /FBAN|FBAV|Instagram|TikTok|Musical_ly|BytedanceWebview/i.test(ua);
+            
+            if (isInAppBrowser) {
+                e.preventDefault();
+                window.location.href = url;
+            }
+        });
+    </script>
+</body>
+</html>
