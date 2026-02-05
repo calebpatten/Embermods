@@ -24,7 +24,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
+    
+    <!-- Preload feature video posters (prevents black flash before thumbnail loads) -->
+    <link rel="preload" as="image" href="/ai-auto-green.jpg">
+    <link rel="preload" as="image" href="/infinite-stamina.jpg">
+    <link rel="preload" as="image" href="/auto-dribble.jpg">
+    <link rel="preload" as="image" href="/ai-defense-boost.jpg">
+    <link rel="preload" as="image" href="/tempo-ai.jpg">
+    <link rel="preload" as="image" href="/quick-stop.jpg">
+<style>
         :root {
             --bg-dark: #0a0a0a;
             --bg-card: #111111;
@@ -506,7 +514,26 @@
             display: block;
         }
 
-        .video-placeholder {
+        
+        /* Poster image overlay (loads instantly; hides when video plays) */
+        .feature-video-container .video-poster {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+        .feature-video-container video {
+            position: relative;
+            z-index: 0;
+            background: #000;
+        }
+        .play-overlay { z-index: 2; }
+.video-placeholder {
             position: absolute;
             inset: 0;
             display: flex;
@@ -2053,7 +2080,20 @@
 document.querySelectorAll('.feature-video-card').forEach(card => {
     const video = card.querySelector('video');
     const overlay = card.querySelector('.play-overlay');
+    const container = card.querySelector('.feature-video-container') || card;
     if (!video || !overlay) return;
+
+    // Add a fast-loading poster <img> on top to prevent the black flash before poster paints
+    let posterImg = null;
+    const posterSrc = video.getAttribute('poster');
+    if (posterSrc) {
+        posterImg = document.createElement('img');
+        posterImg.className = 'video-poster';
+        posterImg.src = posterSrc;
+        posterImg.alt = '';
+        container.appendChild(posterImg);
+    }
+
 
     // Make sure nothing starts playing by itself
     try {
@@ -2085,26 +2125,62 @@ document.querySelectorAll('.feature-video-card').forEach(card => {
         document.querySelectorAll('.feature-video-card .play-overlay').forEach(o => {
             if (o !== overlay) o.style.opacity = '1';
         });
+        // Bring back posters on other cards
+        document.querySelectorAll('.feature-video-container .video-poster').forEach(img => {
+            // If it's not our poster, make sure it shows
+            if (posterImg && img !== posterImg) img.style.opacity = '1';
+        });
 
         try {
             video.muted = true;     // user can unmute from controls
             video.controls = true;  // let them pause / scrub
+
+            // Desktop: pop into fullscreen when they hit play
+            const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (isDesktop) {
+                try {
+                    // Prefer the video element; fallback to the container/card
+                    if (video.requestFullscreen) {
+                        await video.requestFullscreen();
+                    } else if (container.requestFullscreen) {
+                        await container.requestFullscreen();
+                    }
+                } catch (fsErr) {
+                    // If fullscreen is blocked, just play normally
+                }
+            }
+
             const p = video.play();
             if (p && p.catch) await p.catch(() => {});
             hideOverlay();
+            if (posterImg) posterImg.style.opacity = '0';
         } catch (err) {
             showOverlay();
+            if (posterImg) posterImg.style.opacity = '1';
         }
     });
 
     // If they pause using controls, bring the play overlay back
     video.addEventListener('pause', () => {
         showOverlay();
+        if (posterImg) posterImg.style.opacity = '1';
     });
 
     video.addEventListener('ended', () => {
         showOverlay();
+        if (posterImg) posterImg.style.opacity = '1';
     });
+
+    // If they exit fullscreen, pause and bring overlay back (keeps it feeling controlled)
+    const onFsChange = () => {
+        if (!document.fullscreenElement) {
+            try { video.pause(); } catch (e) {}
+            video.controls = false;
+            showOverlay();
+            if (posterImg) posterImg.style.opacity = '1';
+        }
+    };
+    document.addEventListener('fullscreenchange', onFsChange);
 });
 
 // Desktop arrow buttons (desktop-only via CSS)
