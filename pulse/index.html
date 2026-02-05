@@ -512,7 +512,18 @@
             height: 100%;
             object-fit: cover;
             display: block;
+                    outline: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            -webkit-tap-highlight-color: transparent;
         }
+
+        .feature-video-container video:focus,
+        .feature-video-container video:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
 
         
         /* Poster image overlay (loads instantly; hides when video plays) */
@@ -2112,6 +2123,9 @@ document.querySelectorAll('.feature-video-card').forEach(card => {
         e.preventDefault();
         e.stopPropagation();
 
+
+        // Kill Chrome focus ring on click (keeps card border only)
+        try { if (document.activeElement) document.activeElement.blur(); } catch(e) {}
         // Pause/reset other videos
         document.querySelectorAll('.feature-video-card video').forEach(v => {
             if (v !== video) {
@@ -2138,15 +2152,28 @@ document.querySelectorAll('.feature-video-card').forEach(card => {
             // Desktop: pop into fullscreen when they hit play
             const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
             if (isDesktop) {
-                try {
-                    // Prefer the video element; fallback to the container/card
-                    if (video.requestFullscreen) {
-                        await video.requestFullscreen();
-                    } else if (container.requestFullscreen) {
-                        await container.requestFullscreen();
-                    }
-                } catch (fsErr) {
-                    // If fullscreen is blocked, just play normally
+                const tryFS = (el) => {
+                    if (!el) return false;
+                    try {
+                        const fn = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+                        if (fn) {
+                            // IMPORTANT: call immediately inside the click (user gesture)
+                            fn.call(el);
+                            return true;
+                        }
+                    } catch (e) {}
+                    return false;
+                };
+
+                // Try the video first, then the container/card
+                const didFS = tryFS(video) || tryFS(container);
+
+                // Safari/iOS style fullscreen (won't run on most desktops, but harmless)
+                if (!didFS) {
+                    try {
+                        if (typeof video.webkitEnterFullscreen === 'function') video.webkitEnterFullscreen();
+                        else if (typeof video.webkitEnterFullScreen === 'function') video.webkitEnterFullScreen();
+                    } catch (e) {}
                 }
             }
 
