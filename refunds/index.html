@@ -5,269 +5,377 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HC61TBE0P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-1HC61TBE0P');
   </script>
+
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Refund Policy | EmberMods</title>
-  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" />
 
   <style>
     :root {
-      --bg: #0b0b0b;
-      --card: #121212;
+      --bg: #070707;
+      --card: rgba(255,255,255,0.03);
+      --card-solid: #0f0f0f;
       --text: #ffffff;
-      --muted: #b5b5b5;
-      --accent: #ff6b35;
-      --accent-green: #22c55e;
-      --border: #1f1f1f;
+      --muted: rgba(255,255,255,0.68);
+      --muted2: rgba(255,255,255,0.45);
+      --border: rgba(255,255,255,0.10);
+
+      /* Ember gradient vibe */
+      --grad-a: #ff6b35;  /* orange */
+      --grad-b: #ff4fd8;  /* pink */
+      --grad-c: #a855f7;  /* purple */
+
+      --good: #22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,.65);
+      --radius: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 20% 10%, rgba(168,85,247,.12), transparent 60%),
+        radial-gradient(900px 450px at 85% 18%, rgba(255,79,216,.10), transparent 60%),
+        radial-gradient(900px 520px at 50% 85%, rgba(255,107,53,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, #0a0a0a 100%);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Optional top bar (you can remove if you don't want it here) */
+    .topbar {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      background: linear-gradient(90deg, var(--grad-c), var(--grad-b), var(--grad-a));
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .topbar .inner {
+      width: min(980px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .02em;
+      color: #0b0b0b;
+      text-align: center;
+    }
+    .topbar .pill {
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(0,0,0,.25);
+      color: #0b0b0b;
+      padding: 6px 10px;
+      border-radius: 10px;
+      font-weight: 900;
     }
 
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 64px 20px;
+      padding: 56px 20px 72px;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 48px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-    }
-
-    .updated {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 32px;
-    }
-
-    .guarantee-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--accent-green), #16a34a);
-      padding: 12px 20px;
-      border-radius: 8px;
-      margin-bottom: 32px;
-      font-weight: 600;
-    }
-
-    .guarantee-badge span {
-      font-size: 24px;
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 36px;
-      margin-bottom: 12px;
-    }
-
-    p {
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    ul {
-      margin-left: 20px;
-      margin-bottom: 16px;
-      color: var(--muted);
-    }
-
-    li {
-      margin-bottom: 8px;
-      color: var(--muted);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .highlight-box {
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      border-radius: 8px;
-      padding: 20px;
-      margin: 24px 0;
-    }
-
-    .highlight-box p {
-      color: var(--text);
-      margin-bottom: 0;
-    }
-
-    .steps {
-      background: rgba(255, 107, 53, 0.1);
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      border-radius: 8px;
-      padding: 20px;
-      margin: 24px 0;
-    }
-
-    .steps h3 {
-      color: var(--accent);
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .steps ol {
-      margin-left: 20px;
-      color: var(--muted);
-    }
-
-    .steps li {
-      margin-bottom: 8px;
-    }
-
-    .contact {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
 
     .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+      font-size: 15px;
+      padding: 12px 18px;
+      font-weight: 900;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.18);
+
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       color: var(--muted);
-      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 18px;
+      transition: opacity 0.15s ease;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .back-link:hover { opacity: .9; }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
 
-    .back-link:hover {
-      color: var(--accent);
+    h2 {
+      font-size: 20px;
+      margin: 26px 0 10px;
     }
 
-    @media (max-width: 640px) {
-      .card {
-        padding: 28px;
-      }
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
 
-      h1 {
-        font-size: 1.9rem;
-      }
+    p { margin-bottom: 14px; color: var(--text); }
+    .muted { color: var(--muted); }
+
+    ul, ol { padding-left: 18px; margin: 10px 0 16px; }
+    li { margin: 8px 0; color: var(--text); }
+
+    a { color: var(--grad-b); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .updated {
+      color: var(--muted2);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .pill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      font-weight: 800;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .highlight-box {
+      border: 1px solid rgba(255,79,216,0.30);
+      background: rgba(255,79,216,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0 6px;
+    }
+
+    .steps {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 10px;
+    }
+
+    .cta {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.10);
+      cursor: pointer;
+      text-decoration: none !important;
+      transition: transform .08s ease, opacity .15s ease;
+      user-select: none;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .btn:hover { opacity: .92; }
+    .btn:active { transform: translateY(1px); }
+
+    /* Match your site: big clean button */
+    .btn-primary {
+      background: #ffffff;
+      color: #0b0b0b;
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .tiny {
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: 6px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 22px 0;
+    }
+
+    .notice {
+      border: 1px solid rgba(34,197,94,0.30);
+      background: rgba(34,197,94,0.07);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 560px) {
+      .container { padding: 44px 14px 64px; }
+      .card { padding: 22px; }
+      h1 { font-size: 28px; }
+      .topbar .inner { font-size: 12px; }
     }
   </style>
 </head>
 
 <body>
+
   <main class="container">
     <section class="card">
-      <a href="/index.html" class="back-link">← Back to Home</a>
-      <h1>Refund Policy</h1>
-      <div class="updated">Last updated: <strong>January 27, 2026</strong></div>
+      <div style="display:flex; justify-content:center; margin-bottom:22px;"><a href="/index.html" class="back-link">← Back to Home</a></div>
 
-      <div class="guarantee-badge">
-        <span>🛡️</span>
-        30-Day Money-Back Guarantee
+      <h1>Refund Policy</h1>
+      <div class="updated">Last updated: <strong>February 5, 2026</strong></div>
+
+      <div class="badge-row">
+        <span class="pill-chip">🛡️ 30-Day Money-Back Guarantee</span>
+        <span class="pill-chip">⚡ Fast Support on Discord</span>
       </div>
 
-      <p>
-        At EmberMods, we stand behind our products. We want you to be completely satisfied with your
-        purchase, which is why we offer a straightforward 30-day money-back guarantee.
+      <p class="muted">
+        We stand behind our products — but because this is a digital item (instant delivery + ongoing updates),
+        refunds require a quick support check first. Most issues are setup-related and can be fixed fast.
       </p>
 
       <div class="highlight-box">
         <p>
-          <strong>Our Promise:</strong> If you're not satisfied with your purchase for any reason,
-          we'll give you a full refund within 30 days. No questions asked.
+          <strong>How the guarantee works:</strong> If your product <strong>doesn’t function as described</strong>
+          after you complete basic troubleshooting with our support team, you can request a full refund within 30 days.
         </p>
       </div>
 
       <h2>Eligibility</h2>
-      <p>You are eligible for a full refund if:</p>
+      <p>You’re eligible for a refund if:</p>
       <ul>
-        <li>Your purchase was made within the last 30 days</li>
-        <li>You contact us via email at <a href="mailto:contact@embermods.com">contact@embermods.com</a></li>
-        <li>You provide your order email or transaction ID</li>
+        <li>Your purchase was made within the last <strong>30 days</strong></li>
+        <li>You open a <strong>Discord support ticket</strong> and complete basic troubleshooting</li>
+        <li>You provide your <strong>order email</strong> or <strong>transaction ID</strong> in the ticket</li>
       </ul>
 
       <h2>How to Request a Refund</h2>
       <div class="steps">
-        <h3>3 Simple Steps:</h3>
-          <ol>
-            <li><strong>Email us</strong> – Send an email to <a href="mailto:contact@embermods.com">contact@embermods.com</a>
-            with your order email and transaction ID</li>
-            <li><strong>Include details</strong> – Describe why you'd like a refund and attach any relevant info</li>
-            <li><strong>We process refund</strong> – We'll verify and process your refund within 3–7 business days</li>
-          </ol>
+        <h3>3 steps (super simple):</h3>
+        <ol>
+          <li><strong>Join our Discord</strong> and open a <strong>Support Ticket</strong></li>
+          <li><strong>Complete troubleshooting</strong> (we’ll help you verify setup + run a quick test)</li>
+          <li><strong>If it still doesn’t work</strong>, request the refund inside the ticket and we’ll handle it</li>
+        </ol>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.gg/BHkuPraKgH" target="_blank" rel="noopener">
+            🚀 Join Discord & Open a Ticket
+          </a>
+          <a class="btn btn-secondary" href="https://discord.com/invite/BHkuPraKgH" target="_blank" rel="noopener">
+            Open Discord Invite (backup link)
+          </a>
+          <div class="tiny">
+            Tip: If you’re on mobile and it opens in a browser, tap <strong>“Open in Discord”</strong>.
+          </div>
+        </div>
       </div>
 
+      <h2>What “Troubleshooting” Means</h2>
+      <p class="muted">This is just to prevent fake claims and help you get it working ASAP.</p>
+      <ul>
+        <li>We confirm you downloaded the correct file / version</li>
+        <li>We check basic setup steps and settings</li>
+        <li>We run at least one guided test together</li>
+      </ul>
+
       <h2>Processing Time</h2>
-      <p>
-        Once your refund request is approved, we'll process it within 24-48 hours. Depending on your
-        payment method, the funds may take an additional 3-5 business days to appear in your account.
+      <p class="muted">
+        If approved, refunds are typically processed within <strong>24–48 hours</strong>.
+        Your bank/payment provider may take an additional <strong>3–7 business days</strong> to post the funds.
       </p>
 
       <h2>What Happens After a Refund</h2>
-      <p>Once a refund is processed:</p>
       <ul>
-        <li>Your access to the purchased script(s) will be revoked</li>
-        <li>You will no longer receive updates for the refunded product(s)</li>
-        <li>You are welcome to repurchase at any time in the future</li>
+        <li>Your access to the purchased product(s) will be revoked</li>
+        <li>You will no longer receive updates for refunded product(s)</li>
+        <li>You’re welcome to repurchase at any time</li>
       </ul>
 
-      <h2>Exceptions</h2>
-      <p>
-        We reserve the right to deny refund requests in cases of clear abuse, such as:
-      </p>
+      <div class="notice">
+        <strong>Heads up:</strong> If you file a chargeback instead of using support,
+        we may be unable to help further and access can be permanently revoked.
+      </div>
+
+      <h2>Refund Denials & Abuse Prevention</h2>
+      <p class="muted">We reserve the right to deny refund requests in cases of clear abuse, including:</p>
       <ul>
-        <li>Multiple refund requests from the same customer</li>
-        <li>Evidence of product redistribution or sharing</li>
-        <li>Fraudulent purchase activity</li>
+        <li>Repeated refund requests that show a pattern of misuse</li>
+        <li>Evidence of redistribution, account sharing, or re-selling</li>
+        <li>Fraudulent purchase activity or false claims</li>
+        <li>Refusing to complete basic troubleshooting steps</li>
       </ul>
 
-      <h2>Questions?</h2>
-      <p>
-        If you have any questions about our refund policy or need assistance, our support team is
-        available 24/7 on Discord. We're here to help!
-      </p>
+      <div class="divider"></div>
 
       <div class="contact">
-        <h2>Contact Support</h2>
-        <p>
-          The fastest way to get help is through our Discord server:
+        <h2>Need Help Right Now?</h2>
+        <p class="muted">
+          The fastest way to get help is through Discord. Open a ticket and we’ll get you sorted.
         </p>
-        <p>
-          <strong>Discord:</strong> <a href="https://discord.com/invite/BHkuPraKgH">https://discord.com/invite/BHkuPraKgH</a><br />
-          <strong>Response Time:</strong> Usually within a few hours
+        <p class="muted">
+          <strong>Discord:</strong> <a href="https://discord.gg/BHkuPraKgH" target="_blank" rel="noopener">discord.gg/BHkuPraKgH</a><br />
+          <strong>Typical response time:</strong> a few hours (often faster)
         </p>
       </div>
+
     </section>
   </main>
 
   <!-- Vercel Speed Insights -->
   <script>
-      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
