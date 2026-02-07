@@ -37,7 +37,7 @@
             --bg-dark: #0a0a0a;
             --bg-card: #111111;
             --bg-elevated: #1a1a1a;
-            --border: #222222;
+            --border: rgba(255,255,255,0.08);
             --text-white: #ffffff;
             --text-gray: #999999;
             --text-muted: #666666;
@@ -87,7 +87,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .urgency-banner .timer {
@@ -433,7 +433,7 @@
         .social-proof-avatars {
             display: flex;
             align-items: center;
-            margin-right: 4px;
+            margin-right: 1px;
         }
 
         .social-proof-avatars img {
@@ -475,8 +475,12 @@
         }
 
         .social-proof-rating .count {
-            color: #ec4899;
+            color: rgba(255,255,255,0.70);
             font-weight: 500;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1px 6px;
+            border-radius: 999px;
         }
 
         .conversion-benefit-lines {
@@ -1495,12 +1499,14 @@
 
         .reviews-scroll {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            padding-bottom: 16px;
+            padding: 0 16px 16px;
+            scroll-padding-left: 16px;
+            scroll-padding-right: 16px;
         }
 
         .reviews-scroll::-webkit-scrollbar {
@@ -1509,7 +1515,7 @@
 
         .review-card {
             flex: 0 0 auto;
-            width: 86vw;
+            width: 82vw;
             max-width: 360px;
             scroll-snap-align: start;
             background: var(--bg-card);
@@ -1530,9 +1536,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 14px;
         }
 
         .review-avatar {
@@ -1564,6 +1568,35 @@
             font-size: 14px;
             color: var(--text-gray);
             line-height: 1.6;
+        }
+
+
+        .review-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 14px 0 12px;
+        }
+
+        .review-benefit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .review-benefit .check {
+            display: inline-flex;
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.25);
+            flex: 0 0 auto;
+            font-size: 13px;
         }
 
         .review-arrow {
@@ -1671,7 +1704,9 @@
         .getting-icon svg {
             width: 24px;
             height: 24px;
-            color: var(--text-white);
+            color: currentColor;
+            stroke: currentColor;
+            fill: none;
         }
 
         .getting-content {
@@ -1724,6 +1759,13 @@
 
         /* ===== What You're Getting: shorter on desktop + tighter on mobile ===== */
         /* Icon color tint (matches dark theme, makes icons pop) */
+        .getting-icon.icon-clock { color: rgba(127,209,255,0.95); }
+        .getting-icon.icon-bolt { color: #fbbf24; }
+        .getting-icon.icon-shield { color: #60a5fa; }
+        .getting-icon.icon-book { color: #d6a77a; }
+        .getting-icon.icon-refresh { color: #22c55e; }
+
+        
         .getting-icon{
             background: rgba(79,182,255,0.10);
             border: 1px solid rgba(79,182,255,0.25);
@@ -2308,6 +2350,8 @@
                         </div>
                     </div>
                     <p class="review-text">Went from shooting 60% to 85%. This script is amazing — incomparable to any other script I've seen. 10/10, would recommend.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Shooting 85%</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2319,6 +2363,8 @@
                         </div>
                     </div>
                     <p class="review-text">Bought from them in 2K25 and 2K26. Lwk good customer service and consistent updates.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Support replies fast</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2330,6 +2376,8 @@
                         </div>
                     </div>
                     <p class="review-text">Tried 3 different scripts and Pulse is easily the best right now. Tempo AI is flawless — the difference is insane.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Best I’ve used</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2341,6 +2389,8 @@
                         </div>
                     </div>
                     <p class="review-text">At first Zen scripts were outdated and annoying. This one took a bit to set up but it's actually good. Fun and competitive.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Plays elite after setup</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2352,6 +2402,8 @@
                         </div>
                     </div>
                     <p class="review-text">Great script. Easy menu, nothing feels wonky. Admins are fast and detailed with help.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>No bugs</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2363,6 +2415,8 @@
                         </div>
                     </div>
                     <p class="review-text">Absolutely goated script. Shooting 90% consistently from 3 with only an 86 three rating.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Shooting 90%</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2374,6 +2428,8 @@
                         </div>
                     </div>
                     <p class="review-text">Pulse script is so fire. Holy shit. I'm having way too much fun.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Games feel easier</span></div>
                 </div>
 
                 <div class="review-card">
@@ -2385,6 +2441,8 @@
                         </div>
                     </div>
                     <p class="review-text">Good script nbs. Got Pulse and now I shoot 94% from three.</p>
+                    <div class="review-divider"></div>
+                    <div class="review-benefit"><span class="check">✅</span><span>Shooting 94%</span></div>
                 </div>
             </div>
         </div>
@@ -2401,7 +2459,7 @@
 
         <div class="getting-list">
             <div class="getting-item">
-                <div class="getting-icon">
+                <div class="getting-icon icon-clock">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 6v6l4 2"/>
@@ -2414,7 +2472,7 @@
             </div>
 
             <div class="getting-item">
-                <div class="getting-icon">
+                <div class="getting-icon icon-bolt">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                     </svg>
@@ -2426,7 +2484,7 @@
             </div>
 
             <div class="getting-item">
-                <div class="getting-icon">
+                <div class="getting-icon icon-shield">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     </svg>
@@ -2438,7 +2496,7 @@
             </div>
 
             <div class="getting-item">
-                <div class="getting-icon">
+                <div class="getting-icon icon-book">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -2451,7 +2509,7 @@
             </div>
 
             <div class="getting-item">
-                <div class="getting-icon">
+                <div class="getting-icon icon-refresh">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="23 4 23 10 17 10"/>
                         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
