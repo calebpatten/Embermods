@@ -435,17 +435,26 @@
     .vc-user { font-size: 14px; font-weight: 700; color: var(--text-white); margin-bottom: 3px; }
     .vc-tag { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
     .vc-stars { color: var(--star-color); font-size: 13px; letter-spacing: 1px; }
-    .vc-nav { display: flex; justify-content: center; gap: 12px; margin-top: 28px; }
+    .vc-nav { display: none; }
     .vc-arrow {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--bg-card); border: 1px solid var(--border-color);
-      color: #fff; font-size: 18px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s, border-color .2s, transform .15s;
-      box-shadow: 0 4px 14px rgba(0,0,0,.4);
+      display: none;
+      position: absolute;
+      top: 40%; transform: translateY(-50%);
+      z-index: 10;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(10,10,10,.72);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff; cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s, transform .2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,.6);
     }
-    .vc-arrow:hover { background: var(--grad); border-color: transparent; transform: scale(1.08); }
-    .vc-arrow svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+    @media (min-width: 768px) { .vc-arrow { display: flex; } }
+    #vcPrev { left: 50px; }
+    #vcNext { right: 50px; }
+    .vc-arrow:hover { background: var(--grad); border-color: transparent; transform: translateY(-50%) scale(1.1); }
+    .vc-arrow svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2.5; fill: none; }
 
     /* =============================================
        WHAT YOU'RE GETTING
@@ -1899,9 +1908,9 @@
 }
 .conversion-benefit-lines { max-width: 700px !important; margin: 0 auto !important; }
 .benefit-line {
-    font-size: 13px !important;
+    font-size: 17px !important;
     color: var(--text-gray) !important;
-    line-height: 1.5 !important;
+    line-height: 1.55 !important;
     margin-bottom: 6px !important;
     text-align: center !important;
 }
@@ -2430,9 +2439,9 @@ h1, h2, h3 {
 <!-- SOCIAL PROOF ROW -->
 <div class="social-proof-row">
 <div class="social-proof-avatars">
-<img alt="" src="/assets/avatar1.jpg"/>
-<img alt="" src="/assets/avatar2.jpg"/>
-<img alt="" src="/assets/avatar3.jpg"/>
+<img alt="" src="/assets/avatar1.jpg" onerror="this.style.display='none'"/>
+<img alt="" src="/assets/avatar2.jpg" onerror="this.style.display='none'"/>
+<img alt="" src="/assets/avatar3.jpg" onerror="this.style.display='none'"/>
 </div>
 <div class="social-proof-text">Join 3,700+ users</div>
 <span class="social-proof-divider">|</span>
@@ -2666,10 +2675,8 @@ h1, h2, h3 {
 </div>
 
 </div>
-</div>
-<div class="vc-nav">
-  <button class="vc-arrow" id="vcPrev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <button class="vc-arrow" id="vcNext"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button class="vc-arrow" id="vcPrev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button class="vc-arrow" id="vcNext"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
 <script>
 (function(){
@@ -2752,7 +2759,7 @@ h1, h2, h3 {
 <div class="rev-scroll" id="reviewsScroller">
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av"><img class="review-pfp" data-name="kordy0205" alt=""/></div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=kordy0205&backgroundColor=ffd5dc,ffdfbf,c0aede" alt="kordy0205" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">kordy0205</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2762,7 +2769,7 @@ h1, h2, h3 {
 </div>
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av"><img class="review-pfp" data-name="Drosx" alt=""/></div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Drosx&backgroundColor=1a1a2e,0f172a,1e293b" alt="Drosx" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">Drosx</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2772,7 +2779,7 @@ h1, h2, h3 {
 </div>
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av"><img class="review-pfp" data-name="fjaselan" alt=""/></div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/micah/svg?seed=fjaselan&backgroundColor=d1d4f9,b6e3f4,c0aede" alt="fjaselan" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">fjaselan</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2782,7 +2789,7 @@ h1, h2, h3 {
 </div>
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av" style="background:linear-gradient(135deg,#a960ee,#ff5996)">H</div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/bottts/svg?seed=Hadees&backgroundColor=111827,1f2937,374151" alt="Hadees" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">Hadees</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2792,7 +2799,7 @@ h1, h2, h3 {
 </div>
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av" style="background:linear-gradient(135deg,#ff5996,#ff6b35)">R</div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/identicon/svg?seed=R3boot&backgroundColor=a960ee,ff5996,6366f1" alt="R3boot" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">R3boot</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2802,7 +2809,7 @@ h1, h2, h3 {
 </div>
 <div class="rev-card">
 <div class="rev-head">
-<div class="rev-av" style="background:linear-gradient(135deg,#ff6b35,#ffcb57)">J</div>
+<div class="rev-av"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=jub_a&backgroundColor=ffd5dc,ffdfbf,c0aede" alt="jub_a" style="width:100%;height:100%;object-fit:cover;"/></div>
 <span class="rev-name">jub_a</span>
 <span class="rev-verified">✓ Verified</span>
 </div>
@@ -2813,7 +2820,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="Forsaken" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/shapes/svg?seed=Forsaken&backgroundColor=0f172a,1e1b4b,312e81" alt="Forsaken" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">Forsaken</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2824,7 +2831,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="CHAPO" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/micah/svg?seed=CHAPO&backgroundColor=d1d4f9,b6e3f4,c0aede" alt="CHAPO" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">CHAPO</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2835,7 +2842,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="back3ndd" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=back3ndd&backgroundColor=1a1a2e,0f172a,1e293b" alt="back3ndd" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">back3ndd</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2846,7 +2853,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="Umoar" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/rings/svg?seed=Umoar&backgroundColor=7c3aed,6d28d9,5b21b6" alt="Umoar" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">Umoar</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2857,7 +2864,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="uahcutie" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/adventurer/svg?seed=uahcutie&backgroundColor=ffd5dc,ffdfbf,fef9c3" alt="uahcutie" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">uahcutie</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2868,7 +2875,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="KEEP IT HUNDO" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/bottts/svg?seed=KEEP_IT_HUNDO&backgroundColor=111827,1f2937" alt="KEEP IT HUNDO" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">KEEP IT HUNDO💯</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2879,7 +2886,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="★Z3N★" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/identicon/svg?seed=Z3N&backgroundColor=a960ee,ff5996,6366f1" alt="★Z3N★" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">★Z3N★</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2890,7 +2897,7 @@ h1, h2, h3 {
 
 <div class="rev-card">
   <div class="rev-head">
-    <div class="rev-av"><img class="review-pfp" data-name="Jt" alt=""/></div>
+    <div class="rev-av"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jt&backgroundColor=ffd5dc,ffdfbf,c0aede" alt="Jt" style="width:100%;height:100%;object-fit:cover;"/></div>
     <span class="rev-name">Jt</span>
     <span class="rev-verified">✓ Verified</span>
   </div>
@@ -2982,9 +2989,9 @@ h1, h2, h3 {
 <button class="cta-primary sticky-btn" onclick="openCheckout()">GET IT NOW — $60</button>
 <div class="social-proof-row">
 <div class="social-proof-avatars">
-<img class="review-pfp" data-name="kordy0205" alt=""/>
-<img class="review-pfp" data-name="Drosx" alt=""/>
-<img class="review-pfp" data-name="fjaselan" alt=""/>
+<img alt="" src="/assets/avatar1.jpg" onerror="this.style.display='none'"/>
+<img alt="" src="/assets/avatar2.jpg" onerror="this.style.display='none'"/>
+<img alt="" src="/assets/avatar3.jpg" onerror="this.style.display='none'"/>
 </div>
 <div class="social-proof-text">Join 3,700+ users</div>
 <span class="social-proof-divider">|</span>
@@ -3417,17 +3424,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function apply(){
       var imgs = document.querySelectorAll("img.review-pfp[data-name]");
-      for (var i=0;i<imgs.length;i++){
+      var bgColors = ['b6e3f4','c0aede','d1d4f9','ffd5dc','ffdfbf'];
+      function hashStr(s){ var h=0; for(var i=0;i<s.length;i++) h=(Math.imul(31,h)+s.charCodeAt(i))|0; return Math.abs(h); }
+      for(var i=0;i<imgs.length;i++){
         var img = imgs[i];
         var name = img.getAttribute("data-name") || "User";
-        if (!img.getAttribute("src")) img.setAttribute("src", avatarUrl(name));
-        if (!img.getAttribute("alt")) img.setAttribute("alt", name + " avatar");
+        var bg = bgColors[hashStr(name) % bgColors.length];
+        var seed = encodeURIComponent(name + "_pulse");
+        var src = "https://api.dicebear.com/9.x/adventurer/svg?seed=" + seed + "&radius=50&size=96&backgroundColor=" + bg;
+        img.setAttribute("src", src);
+        img.setAttribute("alt", name);
         img.loading = "lazy";
+        img.onerror = (function(n, b){
+          return function(){
+            var ini = n.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
+            this.onerror = null;
+            this.src = "data:image/svg+xml;base64," + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><circle cx="48" cy="48" r="48" fill="#'+b+'"/><text x="48" y="56" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="700" fill="#333">'+ini+'</text></svg>');
+          };
+        })(name, bg);
       }
     }
 
     document.addEventListener("DOMContentLoaded", apply);
-  })();
 </script>
 <script>
 var _viewerCount = Math.floor(Math.random() * (26 - 18 + 1)) + 18;
